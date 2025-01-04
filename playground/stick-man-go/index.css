@@ -11,31 +11,44 @@
 /* vars */
 :root {
   --dark: hsl(204 9% 23%);
-  --subtle-dark: hsl(204 9% 28%);
+  /* --subtle-dark: hsl(204 9% 32%); */
+  --subtle-dark: hsl(35 12% 37%);
+
   --med: hsl(208 8% 39%);
   --light: hsl(206 6% 51%);
   --lighter: hsl(208 4% 56%);
   --lightest: hsl(205 10% 62%);
+  --lightest-accent: hsl(205 10% 72%);
+  --shadow-distance: 6px;
 }
 
 body {
   font-family: "Josefin Sans", sans-serif;
   background-color: var(--dark);
   color: var(--light);
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   place-items: center;
-  height: 100vh;
+  padding-bottom: 120px;
 }
 
-h1 {
+.header {
   font-size: 12rem;
-  font-weight: normal;
-  color: var(--lightest);
-  margin: 6rem 0 4rem;
+  font-weight: bold;
+  letter-spacing: -0.2rem;
+  color: var(--light);
+  margin: 4rem 0 4rem;
+  text-shadow: calc(var(--shadow-distance) * -1) var(--shadow-distance) 0
+    var(--lightest-accent);
 }
 
 .container {
+  --rotate-speed: 400ms;
+  --rotate-delay: 120ms;
+
   display: flex;
   place-content: center;
   place-items: center;
@@ -43,13 +56,22 @@ h1 {
   aspect-ratio: 3/4;
   transform: rotate(8deg);
   background-color: var(--med);
+  box-shadow: calc(var(--shadow-distance) * -1) var(--shadow-distance) 0
+    var(--lightest-accent);
+  transition: transform ease var(--rotate-speed);
 
-  & > .container {
-    background-color: var(--lighter);
+  &:hover {
+    transform: rotate(0deg);
   }
 
-  & > .container > .container {
+  &[data-delay="1"] {
+    background-color: var(--lighter);
+    transition-delay: var(--rotate-delay);
+  }
+
+  &[data-delay="2"] {
     background-color: var(--lightest);
+    transition-delay: calc(var(--rotate-delay) * 2);
   }
 }
 
@@ -60,7 +82,6 @@ h1 {
   height: 100vh;
   z-index: -1;
   color: var(--subtle-dark);
-  width: 100vw;
   overflow: clip;
 
   font-size: 1.2rem;

@@ -47,6 +47,7 @@ function createLines(num) {
   }
 }
 
-createLines(80);
-
-
+document.addEventListener("DOMContentLoaded", () => {
+  // create go lines
+  createLines(80);
+});
