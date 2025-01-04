@@ -1,0 +1,91 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* vars */
+:root {
+  --dark: hsl(204 9% 23%);
+  --subtle-dark: hsl(204 9% 28%);
+  --med: hsl(208 8% 39%);
+  --light: hsl(206 6% 51%);
+  --lighter: hsl(208 4% 56%);
+  --lightest: hsl(205 10% 62%);
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--dark);
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 12rem;
+  font-weight: normal;
+  color: var(--lightest);
+  margin: 6rem 0 4rem;
+}
+
+.container {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 70%;
+  aspect-ratio: 3/4;
+  transform: rotate(8deg);
+  background-color: var(--med);
+
+  & > .container {
+    background-color: var(--lighter);
+  }
+
+  & > .container > .container {
+    background-color: var(--lightest);
+  }
+}
+
+.conveyor {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  color: var(--subtle-dark);
+  width: 100vw;
+  overflow: clip;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.line {
+  width: fit-content;
+  animation: scroll 10s linear infinite reverse;
+  will-change: transform;
+}
+
+.chunks {
+  display: flex;
+}
+
+.chunk {
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
