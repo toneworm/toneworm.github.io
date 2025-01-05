@@ -23,6 +23,7 @@
   --lightest-accent: hsl(205 10% 72%);
 
   --accent: hsl(32, 100%, 70%);
+  --accent-light: hsl(24, 100%, 88%);
 
   --shadow-distance: 6px;
 }
@@ -44,13 +45,32 @@ body {
 }
 
 .header {
+  position: relative;
   font-size: 12rem;
   font-weight: bold;
   letter-spacing: -0.2rem;
-  color: var(--light);
   margin: 4rem 0 4rem;
+}
+
+.shadow-text {
+  position: absolute;
+  color: transparent;
   text-shadow: calc(var(--shadow-distance) * -1) var(--shadow-distance) 0
-    var(--lightest-accent);
+    var(--med);
+  z-index: 0;
+}
+
+.gradient-text {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 40%,
+    var(--accent-light)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .container {
@@ -125,6 +145,12 @@ body {
   &:hover > svg {
     transform: rotate(0deg);
   }
+}
+
+.stick-boi {
+  position: relative;
+  width: 100%;
+  left: -4px;
 }
 
 .conveyor {
