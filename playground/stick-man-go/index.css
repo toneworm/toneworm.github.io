@@ -56,18 +56,19 @@ body {
   position: absolute;
   color: transparent;
   text-shadow: calc(var(--shadow-distance) * -1) var(--shadow-distance) 0
-    var(--med);
+    var(--lightest-accent);
   z-index: 0;
 }
 
 .gradient-text {
   position: relative;
   z-index: 1;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to bottom,
     var(--accent) 40%,
     var(--accent-light)
-  );
+  ); */
+  background: linear-gradient(to bottom, var(--light) 40%, var(--lighter));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
