@@ -11,20 +11,26 @@
 /* vars */
 :root {
   --dark: hsl(204 9% 23%);
-  /* --subtle-dark: hsl(204 9% 32%); */
-  --subtle-dark: hsl(35 12% 37%);
+  --subtle-dark: hsl(204 9% 32%);
+  /* --subtle-dark: hsl(35 12% 37%); */
+  --subtle-dark: hsl(204 9% 29%);
 
+  --med-dark: hsl(208 10% 29%);
   --med: hsl(208 8% 39%);
   --light: hsl(206 6% 51%);
   --lighter: hsl(208 4% 56%);
   --lightest: hsl(205 10% 62%);
   --lightest-accent: hsl(205 10% 72%);
+
+  --accent: hsl(32, 100%, 70%);
+
   --shadow-distance: 6px;
 }
 
 body {
   font-family: "Josefin Sans", sans-serif;
-  background-color: var(--dark);
+  background: linear-gradient(to bottom, var(--dark), var(--med-dark));
+  height: 100vh;
   color: var(--light);
 }
 
@@ -33,6 +39,8 @@ body {
   flex-direction: column;
   place-items: center;
   padding-bottom: 120px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .header {
@@ -49,15 +57,17 @@ body {
   --rotate-speed: 400ms;
   --rotate-delay: 120ms;
 
+  position: relative;
   display: flex;
   place-content: center;
   place-items: center;
   width: 70%;
   aspect-ratio: 3/4;
   transform: rotate(8deg);
-  background-color: var(--med);
+  background: linear-gradient(to bottom, var(--med), var(--light));
   box-shadow: calc(var(--shadow-distance) * -1) var(--shadow-distance) 0
     var(--lightest-accent);
+
   transition: transform ease var(--rotate-speed);
 
   &:hover {
@@ -65,13 +75,55 @@ body {
   }
 
   &[data-delay="1"] {
-    background-color: var(--lighter);
+    background: linear-gradient(to bottom, var(--light), var(--lighter));
     transition-delay: var(--rotate-delay);
   }
 
   &[data-delay="2"] {
-    background-color: var(--lightest);
+    background: linear-gradient(to bottom, var(--lighter), var(--lightest));
     transition-delay: calc(var(--rotate-delay) * 2);
+  }
+}
+
+.container:not([data-delay="0"]) .stamp svg:nth-child(2) > path {
+  fill: var(--med);
+}
+
+.stamp {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 4%;
+  left: 4%;
+  width: 12%;
+  aspect-ratio: 1;
+  cursor: pointer;
+
+  & > svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(30deg);
+    transition: transform var(--rotate-speed);
+    z-index: 1;
+  }
+
+  & > svg path {
+    fill: var(--accent);
+  }
+
+  & > svg:nth-child(2) {
+    z-index: 0;
+    top: 3px;
+    left: -5px;
+
+    & path {
+      fill: var(--med-dark);
+    }
+  }
+
+  &:hover > svg {
+    transform: rotate(0deg);
   }
 }
 
